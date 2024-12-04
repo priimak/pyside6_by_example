@@ -9,4 +9,4 @@ dependencies = [
     "polars==1.14.0"
 ]
 [project.gui-scripts]
-csv_browser = "net.priimak.pyside6.examples.csv_browser.main"
+csv_browser = "net.priimak.pyside6.examples.csv_browser.main:main"
