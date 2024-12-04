@@ -1,0 +1,1 @@
+from net.priimak.pyside6.tools.templates.qmain_window_base_a import MainWindowBaseA
