@@ -8,5 +8,12 @@ dependencies = [
     "pyside6==6.8.0.2",
     "polars==1.14.0"
 ]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+mypkg = ["*.png"]
+
 [project.gui-scripts]
 csv_browser = "net.priimak.pyside6.examples.csv_browser.main:main"
