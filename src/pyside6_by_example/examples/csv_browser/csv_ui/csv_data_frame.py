@@ -4,7 +4,7 @@ import polars
 from PySide6.QtCore import QAbstractTableModel, Qt, QModelIndex
 from polars import DataFrame
 
-from net.priimak.pyside6.tools import err
+from pyside6_by_example.tools import err
 
 
 class CSVDataFrameModel(QAbstractTableModel):

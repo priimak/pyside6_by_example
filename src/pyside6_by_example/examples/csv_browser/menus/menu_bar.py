@@ -1,8 +1,8 @@
 from PySide6.QtWidgets import QMenuBar, QWidget
 
-from net.priimak.pyside6.examples.csv_browser.app_context import AppContext
-from net.priimak.pyside6.examples.csv_browser.menus.file_menu import FileMenu
-from net.priimak.pyside6.examples.csv_browser.menus.help_menu import HelpMenu
+from pyside6_by_example.examples.csv_browser.app_context import AppContext
+from pyside6_by_example.examples.csv_browser.menus.file_menu import FileMenu
+from pyside6_by_example.examples.csv_browser.menus.help_menu import HelpMenu
 
 
 class MainMenuBar(QMenuBar):

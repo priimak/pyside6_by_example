@@ -4,7 +4,7 @@ from typing import Any
 
 from PySide6.QtCore import QByteArray
 
-from net.priimak.pyside6.tools.io import ensure_dir
+from pyside6_by_example.tools.io import ensure_dir
 
 
 class AppState:

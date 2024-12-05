@@ -3,12 +3,12 @@ from pathlib import Path
 from PySide6.QtCore import QMargins
 from PySide6.QtWidgets import QVBoxLayout, QMenu, QWidget
 
-from net.priimak.pyside6.examples.csv_browser.app_context import AppContext
-from net.priimak.pyside6.examples.csv_browser.csv_ui.csv_data_frame import CSVDataFrameModel
-from net.priimak.pyside6.examples.csv_browser.csv_ui.csv_table_view import CSVTableView
-from net.priimak.pyside6.tools import msg_on_err
-from net.priimak.pyside6.tools.panel_widget import Panel
-from net.priimak.pyside6.tools.recenetly_opened_files import update_last_opened_files_menu
+from pyside6_by_example.examples.csv_browser import CSVDataFrameModel
+from pyside6_by_example.examples.csv_browser.app_context import AppContext
+from pyside6_by_example.examples.csv_browser.csv_ui.csv_table_view import CSVTableView
+from pyside6_by_example.tools import msg_on_err
+from pyside6_by_example.tools.panel_widget import Panel
+from pyside6_by_example.tools.recenetly_opened_files import update_last_opened_files_menu
 
 
 class MainPanel(Panel[QVBoxLayout]):

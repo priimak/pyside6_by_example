@@ -1,9 +1,9 @@
 from PySide6.QtCore import QMargins
 from PySide6.QtWidgets import QComboBox, QHBoxLayout
 
-from net.priimak.pyside6.examples.csv_browser.app_context import AppContext
-from net.priimak.pyside6.examples.csv_browser.filter_line_edit import FilterLineEdit
-from net.priimak.pyside6.tools.panel_widget import Panel
+from pyside6_by_example.examples.csv_browser.app_context import AppContext
+from pyside6_by_example.examples.csv_browser.filter_line_edit import FilterLineEdit
+from pyside6_by_example.tools.panel_widget import Panel
 
 
 class TopPanel(Panel[QHBoxLayout]):

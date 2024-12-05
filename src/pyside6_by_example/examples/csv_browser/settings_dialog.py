@@ -3,8 +3,8 @@ from PySide6.QtGui import QIntValidator
 from PySide6.QtWidgets import QDialog, QVBoxLayout, QPushButton, QCheckBox, QHBoxLayout, QLineEdit, QLabel, \
     QSpacerItem, QMessageBox
 
-from net.priimak.pyside6.tools import AppConfig
-from net.priimak.pyside6.tools.panel_widget import Panel
+from pyside6_by_example.tools import AppConfig
+from pyside6_by_example.tools.panel_widget import Panel
 
 
 class SettingsDialog(QDialog):

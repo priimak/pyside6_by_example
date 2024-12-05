@@ -1,0 +1,1 @@
+from pyside6_by_example.tools.templates.qmain_window_base_a import MainWindowBaseA

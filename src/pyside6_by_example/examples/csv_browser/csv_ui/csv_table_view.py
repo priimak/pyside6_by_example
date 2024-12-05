@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QTableView
 
-from net.priimak.pyside6.examples.csv_browser.csv_ui.csv_data_frame import CSVDataFrameModel
+from pyside6_by_example.examples.csv_browser import CSVDataFrameModel
 
 
 class CSVTableView(QTableView):

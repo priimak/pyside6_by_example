@@ -2,8 +2,8 @@ import sys
 
 from PySide6.QtWidgets import QApplication
 
-from net.priimak.pyside6.examples.basic_1.main_window import MainWindow
-from net.priimak.pyside6.tools.app_persist import AppPersistence
+from pyside6_by_example.examples.basic_1.main_window import MainWindow
+from pyside6_by_example.tools.app_persist import AppPersistence
 
 
 def main():

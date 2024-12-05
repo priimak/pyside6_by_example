@@ -2,9 +2,9 @@ from pathlib import Path
 
 from PySide6.QtWidgets import QMenu, QFileDialog, QMenuBar, QMessageBox, QWidget
 
-from net.priimak.pyside6.examples.csv_browser.app_context import AppContext
-from net.priimak.pyside6.examples.csv_browser.settings_dialog import SettingsDialog
-from net.priimak.pyside6.tools.recenetly_opened_files import init_recently_opened_menu
+from pyside6_by_example.examples.csv_browser.app_context import AppContext
+from pyside6_by_example.examples.csv_browser.settings_dialog import SettingsDialog
+from pyside6_by_example.tools.recenetly_opened_files import init_recently_opened_menu
 
 
 class FileMenu(QMenu):

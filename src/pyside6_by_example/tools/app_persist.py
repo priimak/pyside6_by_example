@@ -1,9 +1,9 @@
 from pathlib import Path
 from typing import Any
 
-from net.priimak.pyside6.tools.app_config import AppConfig
-from net.priimak.pyside6.tools.app_state import AppState
-from net.priimak.pyside6.tools.io import ensure_dir
+from pyside6_by_example.tools.app_config import AppConfig
+from pyside6_by_example.tools.app_state import AppState
+from pyside6_by_example.tools.io import ensure_dir
 
 
 class AppPersistence:

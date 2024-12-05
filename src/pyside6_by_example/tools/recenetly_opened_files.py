@@ -3,7 +3,7 @@ from typing import Callable
 
 from PySide6.QtWidgets import QMenu
 
-from net.priimak.pyside6.tools import AppPersistence
+from pyside6_by_example.tools import AppPersistence
 
 
 def init_recently_opened_menu(

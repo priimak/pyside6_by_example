@@ -4,14 +4,15 @@ from typing import override
 from PySide6.QtGui import QIcon, QCloseEvent
 from PySide6.QtWidgets import QMessageBox
 
-from net.priimak.pyside6.examples.csv_browser import AppContext, MainMenuBar, TopPanel, MainPanel, BottomPanel
-from net.priimak.pyside6.tools import AppPersistence
-from net.priimak.pyside6.tools.templates import MainWindowBaseA
+from pyside6_by_example.examples.csv_browser import AppContext, MainMenuBar, TopPanel, MainPanel, BottomPanel
+from pyside6_by_example.tools import AppPersistence
+from pyside6_by_example.tools.templates import MainWindowBaseA
 
 
 class MainWindow(MainWindowBaseA):
     def __init__(self, screen_dim: tuple[int, int], app_persistence: AppPersistence):
         super().__init__(title = "CSV Browser", screen_dim = screen_dim, app_persistence = app_persistence)
+
         cvsx_icon_file_path = Path(__file__).parent / "csv_browser.png"
         self.setWindowIcon(QIcon(f"{cvsx_icon_file_path}"))
 

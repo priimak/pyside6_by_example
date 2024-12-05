@@ -2,8 +2,8 @@ import sys
 
 from PySide6.QtWidgets import QApplication
 
-from net.priimak.pyside6.examples.csv_browser.main_window import MainWindow
-from net.priimak.pyside6.tools.app_persist import AppPersistence
+from pyside6_by_example.examples.csv_browser.main_window import MainWindow
+from pyside6_by_example.tools.app_persist import AppPersistence
 
 
 def main():
@@ -20,7 +20,8 @@ def main():
             "open_last_opened_file_on_load": None
         }
     )
-
+    # print(f"sys.prefix = {sys.prefix}")
+    # print(f"sys.exec_prefix = {sys.exec_prefix}")
     win = MainWindow(screen_dim = (screen_width, screen_height), app_persistence = persistence)
     win.show()
 

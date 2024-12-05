@@ -9,11 +9,16 @@ dependencies = [
     "polars==1.14.0"
 ]
 
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.setuptools.package-data]
-mypkg = ["*.png"]
+"*" = ["*.png"]
 
-[project.gui-scripts]
-csv_browser = "net.priimak.pyside6.examples.csv_browser.main:main"
+[project.scripts]
+csv_browser = "pyside6_by_example.examples.csv_browser.main:main"
+pyside6_example_1 = "pyside6_by_example.examples.basic_1.main:main"
