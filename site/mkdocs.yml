@@ -1,0 +1,18 @@
+site_name: PySide6 By Example
+theme:
+  name: material
+  features:
+    - navigation.sections
+
+# Markdown extensions
+markdown_extensions:
+  - attr_list
+  - toc:
+      permalink: true
+  - pymdownx.highlight
+  - pymdownx.superfences
+
+nav:
+  - "Home": "intro.md"
+  - "Anatomy of basic app": "anatomy_of_basic_application.md"
+  - "CSV Browser app": "csv_browser.md"

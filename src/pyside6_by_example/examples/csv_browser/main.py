@@ -20,8 +20,6 @@ def main():
             "open_last_opened_file_on_load": None
         }
     )
-    # print(f"sys.prefix = {sys.prefix}")
-    # print(f"sys.exec_prefix = {sys.exec_prefix}")
     win = MainWindow(screen_dim = (screen_width, screen_height), app_persistence = persistence)
     win.show()
 

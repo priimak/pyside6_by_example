@@ -1,4 +1,6 @@
-from PySide6.QtCore import QMargins
+from typing import override
+
+from PySide6.QtCore import QMargins, QByteArray
 from PySide6.QtGui import QPalette, Qt, QCloseEvent
 from PySide6.QtWidgets import QMainWindow, QMessageBox, QMenuBar, QMenu, QVBoxLayout, QWidget, QHBoxLayout, QLabel
 
@@ -14,13 +16,14 @@ class MainWindow(QMainWindow):
         self.define_menus()
         self.define_panels()
 
+    @override
     def closeEvent(self, event: QCloseEvent):
         self.app_state.save_geometry("main", self.saveGeometry())
         event.accept()
 
     def set_geometry(self, screen_width: int, screen_height: int):
         # Try loading geometry from saved app state
-        loaded_geometry = self.app_state.get_geometry("main")
+        loaded_geometry: QByteArray | None = self.app_state.get_geometry("main")
         if loaded_geometry is None:
             # Init main window size to be 60% of the screen size
             win_size_fraction = 0.6
@@ -76,7 +79,6 @@ class MainWindow(QMainWindow):
         panel.setPalette(palette)
 
         layout = QVBoxLayout()
-        # layout.setContentsMargins(QMargins(0, 0, 0, 0))
         panel.setLayout(layout)
         layout.addWidget(
             QLabel("Main Panel"),
@@ -94,7 +96,6 @@ class MainWindow(QMainWindow):
         panel.setPalette(palette)
 
         layout = QHBoxLayout()
-        # layout.setContentsMargins(QMargins(0, 0, 0, 0))
         layout.addWidget(QLabel("Bottom Panel"))
         panel.setLayout(layout)
 
