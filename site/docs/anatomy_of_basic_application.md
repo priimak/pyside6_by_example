@@ -28,6 +28,10 @@ class MainWindow(QMainWindow):
         self.set_geometry(screen_dim[0], screen_dim[1])
         self.define_menus()
         self.define_panels()
+
+    def set_geometry(self, screen_width: int, screen_height: int) -> None: ...
+    def define_menus(self) -> None: ...
+    def define_panels(self) -> None: ...
 ```
 
 We pass screen dimensions (`screen_dim: tuple[int, int]`) in the form of screen width and height which is then 
