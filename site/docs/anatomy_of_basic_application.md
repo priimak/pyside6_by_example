@@ -184,7 +184,6 @@ def get_bottom_panel(self) -> QWidget:
     panel.setPalette(palette)
 
     layout = QHBoxLayout()
-    # layout.setContentsMargins(QMargins(0, 0, 0, 0))
     layout.addWidget(QLabel("Bottom Panel"))
     panel.setLayout(layout)
 
