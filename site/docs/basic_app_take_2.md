@@ -1,4 +1,4 @@
-# Basic app. Take 2
+# Basic app re-structured
 
 ## Introduction
 
@@ -18,10 +18,17 @@ panels/
 main.py
 main_window.py
 ```
-i.e. every class declaration is placed into its own .py file.
+i.e. every class declaration is placed into its own .py file. Overall there will be a lot more code, however, this 
+structure will be much easier to understand and handle if your app will grow to express complex behaviour. 
 
-## Overview
-## MainClass
+Complete code for it available [here](https://github.com/priimak/pyside6_by_example/tree/master/src/pyside6_by_example/examples/basic_2).
+Once installed using `pipx` you can run this app by typing 
+```text
+$ pyside6_example_2
+```
+in the terminal (PowerShell window on Windows).
+
+## MainWindow
 ```python
 from typing import override
 
@@ -53,3 +60,8 @@ class MainWindow(QMainWindow):
         self.app_state.save_geometry(self.objectName(), self.saveGeometry())
         event.accept()
 ```
+
+Key differences here are:
+
+1. Function [set_geometry(...)](https://github.com/priimak/pyside6_by_example/blob/master/src/pyside6_by_example/tools/geometry_helpers.py) being generic moved to it its own file, and it uses object name (set by calling [self.setObjectName(...)](https://doc.qt.io/qtforpython-6/PySide6/QtCore/QObject.html#PySide6.QtCore.QObject.setObjectName) to record geometry under it.
+2. Classes [`MainMenuBar`](https://github.com/priimak/pyside6_by_example/blob/master/src/pyside6_by_example/examples/basic_2/menus/menu_bar.py), [`RootPanel`](https://github.com/priimak/pyside6_by_example/blob/master/src/pyside6_by_example/examples/basic_2/panels/root_panel.py), [`TopPanel`](https://github.com/priimak/pyside6_by_example/blob/master/src/pyside6_by_example/examples/basic_2/panels/top_panel.py), [`MainPanel`](https://github.com/priimak/pyside6_by_example/blob/master/src/pyside6_by_example/examples/basic_2/panels/main_panel.py) and [`BottomPanel`](https://github.com/priimak/pyside6_by_example/blob/master/src/pyside6_by_example/examples/basic_2/panels/bottom_panel.py) are now placed into their own files as is [`main()`](https://github.com/priimak/pyside6_by_example/blob/master/src/pyside6_by_example/examples/basic_2/main.py) function.

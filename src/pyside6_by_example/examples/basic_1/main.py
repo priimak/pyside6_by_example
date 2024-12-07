@@ -130,7 +130,7 @@ def main():
     )
     win.show()
 
-    app.exec()
+    sys.exit(app.exec())
 
 
 if __name__ == '__main__':

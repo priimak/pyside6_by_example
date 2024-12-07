@@ -15,5 +15,5 @@ markdown_extensions:
 nav:
   - "Introduction": "intro.md"
   - "Anatomy of basic app": "anatomy_of_basic_application.md"
-  - "Basic app structured": "basic_app_take_2.md"
+  - "Basic app re-structured": "basic_app_take_2.md"
   - "CSV Browser app": "csv_browser.md"

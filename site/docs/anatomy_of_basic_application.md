@@ -35,6 +35,9 @@ with _File_ menu
 
 ![](img/basic_file_menu.png)
 
+So lets construct an application that when started shows this exact layout. To be able to see these three 
+panels (top, middle/main and bottom) we give them three different color backgrounds.
+
 ## MainWindow
 
 To that end we
@@ -182,8 +185,8 @@ def define_panels(self) -> None:
     root_panel = QWidget()
     layout = QVBoxLayout()
     root_panel.setLayout(layout)
-    layout.setContentsMargins(QMargins(5, 5, 5, 1))
-    layout.setSpacing(0)
+    layout.setContentsMargins(QMargins(5, 5, 5, 1)) # spacing around root_panel
+    layout.setSpacing(0) # spacing between widgets added to the layout
 
     layout.addWidget(self.get_top_panel())
     layout.addWidget(self.get_main_panel(), stretch = 1)
@@ -191,6 +194,14 @@ def define_panels(self) -> None:
 
     self.setCentralWidget(root_panel)
 ```
+When widgets are added to the [`QVBoxLayout`](https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QVBoxLayout.html) each 
+subsequent one is added below the previous one. They will naturally be stretched to occupy the same fraction of 
+available vertical space. This is not what we actually want. When we resize the window we want main panel to grow while
+top and the bottom panels to stay at their minium vertical size. But adding `stretch = 1` when we add MainPanel widget
+to the layout we ensure desired behaviour.
+
+Functions below create three different widgets/panels. These functions we almost identical, main difference being text 
+the label and background color in each.
 
 ```python
 def get_top_panel(self) -> QWidget:
@@ -245,6 +256,10 @@ def get_bottom_panel(self) -> QWidget:
 
 ## main.py
 
+At the end we pack entire application code into one file `main.py` and add function `main()` which 
+starts [`QApplication`](https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QApplication.html). Think of `QApplication` 
+as a runtime that manages window and widget creation and destruction.
+
 ```python
 import sys
 
@@ -271,7 +286,7 @@ def main():
     )
     win.show()
 
-    app.exec()
+    sys.exit(app.exec())
 
 
 if __name__ == '__main__':
@@ -280,6 +295,7 @@ if __name__ == '__main__':
 
 ## Links
 
+* [QApplication](https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QApplication.html)
 * [QMainWindow](https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QMainWindow.html)
 * [QMessageBox](https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QMessageBox.html)
 * [QMenuBar](https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QMenuBar.html)

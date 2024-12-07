@@ -22,3 +22,4 @@ where = ["src"]
 [project.scripts]
 csv_browser = "pyside6_by_example.examples.csv_browser.main:main"
 pyside6_example_1 = "pyside6_by_example.examples.basic_1.main:main"
+pyside6_example_2 = "pyside6_by_example.examples.basic_2.main:main"

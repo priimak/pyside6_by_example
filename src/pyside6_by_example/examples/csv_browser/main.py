@@ -23,7 +23,7 @@ def main():
     win = MainWindow(screen_dim = (screen_width, screen_height), app_persistence = persistence)
     win.show()
 
-    app.exec()
+    sys.exit(app.exec())
 
 
 if __name__ == '__main__':
