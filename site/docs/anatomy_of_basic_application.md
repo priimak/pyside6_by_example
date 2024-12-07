@@ -1,5 +1,19 @@
 # Anatomy of basic application
-## Overview
+## Introduction
+Here we are going to create GUI application that does not do anything but simply showcases components of basic layout, 
+common menus like _File_ and _Help_ and ability to save and restore position and dimensions of the app window on 
+the screen.
+
+If you have already run following line in your terminal (PowerShell on Windows)
+```text
+$ pipx install --python 3.13 git+https://github.com/priimak/pyside6_by_example.git
+```
+you can run this app by running 
+```text
+$ pyside6_example_1
+```
+
+## GUI Overview
 For many GUI apps basic layout has the following form:
 
 ![](img/basic_app_layout.png)
@@ -201,8 +215,12 @@ import sys
 
 from PySide6.QtWidgets import QApplication
 
-from pyside6_by_example.examples.basic_1.main_window import MainWindow
+from pyside6_by_example.examples.basic_1.main import MainWindow
 from pyside6_by_example.tools.app_persist import AppPersistence
+
+
+class AppPersistence:
+    ...
 
 
 def main():
