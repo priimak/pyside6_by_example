@@ -32,14 +32,14 @@ class MainWindow(MainWindowBaseA):
         self.ctx.exit_application = self.close
 
         # re-open last opened file if so set in app config.
-        if self.app_config.get_value("open_last_opened_file_on_load", bool) is True:
+        if self.app_config.get_value("open_last_opened_file_on_load", bool | None) is True:
             last_opened_files = self.app_state.get_value("last_opened_files", [])
             if last_opened_files != []:
                 self.ctx.load_csv_file(last_opened_files[0])
 
     @override
     def closeEvent(self, event: QCloseEvent):
-        open_last_opened_file_on_load = self.app_config.get_value("open_last_opened_file_on_load", bool)
+        open_last_opened_file_on_load = self.app_config.get_value("open_last_opened_file_on_load", bool | None)
         if open_last_opened_file_on_load is None:
             # prompt user if he always wants to open last opened file
             result = QMessageBox.question(

@@ -20,7 +20,7 @@ class SettingsDialog(QDialog):
         open_last_opened_file_on_load_cb = QCheckBox(
             "Automatically reopen last opened file when this application starts"
         )
-        open_last_opened_file_on_load = app_config.get_value("open_last_opened_file_on_load", bool)
+        open_last_opened_file_on_load = app_config.get_value("open_last_opened_file_on_load", bool | None)
         if open_last_opened_file_on_load is None or not open_last_opened_file_on_load:
             open_last_opened_file_on_load_cb.setChecked(False)
         else:
