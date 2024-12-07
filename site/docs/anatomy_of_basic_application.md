@@ -1,19 +1,32 @@
 # Anatomy of basic application
+
 ## Introduction
-Here we are going to create GUI application that does not do anything but simply showcases components of basic layout, 
-common menus like _File_ and _Help_ and ability to save and restore position and dimensions of the app window on 
+
+Here we are going to create GUI application that does not do anything but simply showcases components of basic layout,
+common menus like _File_ and _Help_ and ability to save and restore position and dimensions of the app window on
 the screen.
 
 If you have already run following line in your terminal (PowerShell on Windows)
+
 ```text
 $ pipx install --python 3.13 git+https://github.com/priimak/pyside6_by_example.git
 ```
-you can run this app by running 
+
+you can run this app by running
+
 ```text
 $ pyside6_example_1
 ```
 
+In the first iteration this application will consist entirely of just one
+file [main.py](https://github.com/priimak/pyside6_by_example/blob/master/src/pyside6_by_example/examples/basic_1/main.py).
+In the subsequent example we will split this app into many files which is more suitable for more complicated
+applications. It should be noted, however, that there are plenty of use cases where one file GUI app is all that
+is needed. Hence, you can use this code as a template for the most simple apps. If, however, your is complicated enough
+or may become complicated later, it is better to use more structured code.
+
 ## GUI Overview
+
 For many GUI apps basic layout has the following form:
 
 ![](img/basic_app_layout.png)
@@ -23,17 +36,21 @@ with _File_ menu
 ![](img/basic_file_menu.png)
 
 ## MainWindow
-To that end we create [MainWindow](https://github.com/priimak/pyside6_by_example/blob/master/src/pyside6_by_example/examples/basic_1/main_window.py) class
+
+To that end we
+create [MainWindow](https://github.com/priimak/pyside6_by_example/blob/aac33ca9786008adb020a0b0c2005413cfc0f96c/src/pyside6_by_example/examples/basic_1/main.py#L12)
+class
 which extends [`QMainWindow`](https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QMainWindow.html)
 
 ```python
 from PySide6.QtWidgets import QMainWindow
 from pyside6_by_example.tools.app_persist import AppPersistence
 
+
 class MainWindow(QMainWindow):
     def __init__(
-            self, 
-            screen_dim: tuple[int, int], 
+            self,
+            screen_dim: tuple[int, int],
             app_persistence: AppPersistence
     ):
         super().__init__()
@@ -44,36 +61,44 @@ class MainWindow(QMainWindow):
         self.define_panels()
 
     def set_geometry(self, screen_width: int, screen_height: int) -> None: ...
+
     def define_menus(self) -> None: ...
+
     def define_panels(self) -> None: ...
 ```
 
-We pass screen dimensions (`screen_dim: tuple[int, int]`) in the form of screen width and height which is then 
-used in `self.set_geometry(...)` function to open this window in the center of screen occupying some fraction 
+We pass screen dimensions (`screen_dim: tuple[int, int]`) in the form of screen width and height which is then
+used in `self.set_geometry(...)` function to open this window in the center of screen occupying some fraction
 of the screen.
 
-Class [`AppPersistance`](https://github.com/priimak/pyside6_by_example/blob/master/src/pyside6_by_example/tools/app_persist.py) 
-holds functions that deal with application [config](https://github.com/priimak/pyside6_by_example/blob/master/src/pyside6_by_example/tools/app_config.py) 
-and [state](https://github.com/priimak/pyside6_by_example/blob/master/src/pyside6_by_example/tools/app_state.py). Configuration and state are 
-very similar but differ in intent. Configuration is something that does not change very often and is controlled 
-by the user, typically through the _Settings_ window. State on the other hand is volatile that changes implicitly 
-while application is running. In this example we will use to store position of main window on the screen and 
-its dimensions. Both, the state and the configuration, need to persist between application restarts, hence class is 
-called `AppPersistance`. Specifics of how and where data is persisted on the disk is irrelevant here and will be 
+Class [
+`AppPersistance`](https://github.com/priimak/pyside6_by_example/blob/master/src/pyside6_by_example/tools/app_persist.py)
+holds functions that deal with
+application [config](https://github.com/priimak/pyside6_by_example/blob/master/src/pyside6_by_example/tools/app_config.py)
+and [state](https://github.com/priimak/pyside6_by_example/blob/master/src/pyside6_by_example/tools/app_state.py).
+Configuration and state are
+very similar but differ in intent. Configuration is something that does not change very often and is controlled
+by the user, typically through the _Settings_ window. State on the other hand is volatile that changes implicitly
+while application is running. In this example we will use to store position of main window on the screen and
+its dimensions. Both, the state and the configuration, need to persist between application restarts, hence class is
+called `AppPersistance`. Specifics of how and where data is persisted on the disk is irrelevant here and will be
 addressed elsewhere.
 
 Now lets go through defining functions listed in the `MainWindow` constructor.
 
 ## set_geometry(...)
 
-When app closes we save [geometry](https://doc.qt.io/qtforpython-6/overviews/application-windows.html#overviews-window-geometry) 
-(window position on the screen and its dimensions) of the main window in `self.app_state`. 
+When app closes we
+save [geometry](https://doc.qt.io/qtforpython-6/overviews/application-windows.html#overviews-window-geometry)
+(window position on the screen and its dimensions) of the main window in `self.app_state`.
 
-The first time our application is run its geometry has not been saved yet and `AppState::get_geometry("main")` return `None`. 
-In that case we manually set geometry of the main window to occupy 60% of the screen in the middle of the screen. 
+The first time our application is run its geometry has not been saved yet and `AppState::get_geometry("main")` return
+`None`.
+In that case we manually set geometry of the main window to occupy 60% of the screen in the middle of the screen.
 
-On subsequent runs geometry of the main window should already be saved and thus `loaded_geometry` will not be `None`. In 
-this case we restore main window geometry by calling [`QMainWindow::restoreGeometry(...)`](https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html#PySide6.QtWidgets.QWidget.restoreGeometry)
+On subsequent runs geometry of the main window should already be saved and thus `loaded_geometry` will not be `None`. In
+this case we restore main window geometry by calling [
+`QMainWindow::restoreGeometry(...)`](https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html#PySide6.QtWidgets.QWidget.restoreGeometry)
 
 Field `self.app_state: AppState`
 
@@ -94,7 +119,9 @@ def set_geometry(self, screen_width: int, screen_height: int):
         self.restoreGeometry(loaded_geometry)
 ```
 
-To ensure that geometry is saved we override function [`QWidget::closeEvent(...)`](https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html#PySide6.QtWidgets.QWidget.closeEvent) called when window is closing. 
+To ensure that geometry is saved we override function [
+`QWidget::closeEvent(...)`](https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html#PySide6.QtWidgets.QWidget.closeEvent)
+called when window is closing.
 
 ```python
 @override
@@ -105,8 +132,10 @@ def closeEvent(self, event: QCloseEvent):
 
 ## define_menus(...)
 
-Function `define_menus()` creates instance of [`QMenuBar`](https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QMenuBar.html),
-adds two menus to it and sets it on the instance of `QMainWindow` by calling [`QMainWindow::setMenuBar`](https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QMainWindow.html#PySide6.QtWidgets.QMainWindow.setMenuBar).
+Function `define_menus()` creates instance of [
+`QMenuBar`](https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QMenuBar.html),
+adds two menus to it and sets it on the instance of `QMainWindow` by calling [
+`QMainWindow::setMenuBar`](https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QMainWindow.html#PySide6.QtWidgets.QMainWindow.setMenuBar).
 
 ```python
 def define_menus(self) -> None:
@@ -134,13 +163,19 @@ def get_file_menu(self, menu_bar: QMenuBar) -> QMenu:
 def get_help_menu(self, menu_bar: QMenuBar) -> QMenu:
     help_menu = QMenu("&Help", menu_bar)
     help_menu.addAction(
-        "&About", 
+        "&About",
         lambda: QMessageBox.about(self, "About", "Basic example")
     )
     return help_menu
 ```
 
 ## define_panels(...)
+
+Most of the non-trivial GUI elements represented by classes that
+extend [QWidget](https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html).
+Class `QWidget` itself can serve as a container for other widgets. That commonly accomplished indirectly, by setting a
+particular [QLayout](https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLayout.html) and then adding other widgets to
+it.
 
 ```python
 def define_panels(self) -> None:
@@ -242,3 +277,14 @@ def main():
 if __name__ == '__main__':
     main()
 ```
+
+## Links
+
+* [QMainWindow](https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QMainWindow.html)
+* [QMessageBox](https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QMessageBox.html)
+* [QMenuBar](https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QMenuBar.html)
+* [QMenu](https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QMenu.html)
+* [QVBoxLayout](https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QVBoxLayout.html)
+* [QHBoxLayout](https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QHBoxLayout.html)
+* [QWidget](https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QWidget.html)
+* [QLabel](https://doc.qt.io/qtforpython-6/PySide6/QtWidgets/QLabel.html)
